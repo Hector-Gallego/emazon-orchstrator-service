@@ -2,16 +2,16 @@ package com.resourceserver.emazonorchestratorservice.domain.model;
 
 
 
-public class SupplyTransactionOrchestrator {
+public class SupplyTransactionDetails {
 
     private Long articleId;
     private String articleName;
     private Integer quantity;
 
-    public SupplyTransactionOrchestrator() {
+    public SupplyTransactionDetails() {
     }
 
-    public SupplyTransactionOrchestrator(Long articleId, String articleName, Integer quantity) {
+    public SupplyTransactionDetails(Long articleId, String articleName, Integer quantity) {
         this.articleId = articleId;
         this.articleName = articleName;
         this.quantity = quantity;

@@ -6,5 +6,5 @@ public class ApiEndPointConstants {
         throw new IllegalStateException();
     }
 
-    public static final String API_SUPPLY_URI = "/api/supply";
+    public static final String API_ORCHESTRATOR_SUPPLY_URI = "/api/orchestrator/supply";
 }

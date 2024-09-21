@@ -7,5 +7,8 @@ public class SecurityConstants {
 
     public static final String CLAIM_FIELD_NAME = "role";
     public static final String EMPTY_FIELD = "";
+    public static final String AUTHORIZATION_HEADER = "Authorization";
+    public static final String BEARER_PREFIX = "Bearer ";
+
 }
 

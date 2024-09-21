@@ -1,5 +1,6 @@
 package com.resourceserver.emazonorchestratorservice.configuration.feign;
 
+import com.resourceserver.emazonorchestratorservice.configuration.security.constants.SecurityConstants;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,8 @@ public class JwtTokenPropagator implements RequestInterceptor {
 
         if (authentication instanceof JwtAuthenticationToken) {
             String jwtToken = ((JwtAuthenticationToken) authentication).getToken().getTokenValue();
-            requestTemplate.header("Authorization", "Bearer " + jwtToken);
+            requestTemplate.header(SecurityConstants.AUTHORIZATION_HEADER,
+                    SecurityConstants.BEARER_PREFIX + jwtToken);
         }
 
     }

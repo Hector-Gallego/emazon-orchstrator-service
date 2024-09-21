@@ -1,4 +1,4 @@
-package com.resourceserver.emazonorchestratorservice.configuration.security;
+package com.resourceserver.emazonorchestratorservice.configuration.security.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

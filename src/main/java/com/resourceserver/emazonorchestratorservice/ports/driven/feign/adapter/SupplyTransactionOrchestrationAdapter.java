@@ -1,6 +1,6 @@
 package com.resourceserver.emazonorchestratorservice.ports.driven.feign.adapter;
 
-import com.resourceserver.emazonorchestratorservice.domain.model.SupplyTransactionOrchestrator;
+import com.resourceserver.emazonorchestratorservice.domain.model.SupplyTransactionDetails;
 import com.resourceserver.emazonorchestratorservice.domain.ports.feign.SupplyTransactionOrchestrationFeignPort;
 import com.resourceserver.emazonorchestratorservice.ports.driven.feign.dtos.SupplyTransactionRequestDto;
 import com.resourceserver.emazonorchestratorservice.domain.exceptions.StockUpdateException;
@@ -15,6 +15,17 @@ import com.resourceserver.emazonorchestratorservice.ports.driven.feign.dtos.Stoc
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * The SupplyTransactionOrchestrationAdapter class orchestrates the supply transactions by coordinating
+ * the stock update and the transaction registration through microservices.
+ * It communicates with two microservices:
+ * - Emazon Stock MicroService: to handle the stock updates.
+ * - Emazon Transactions MicroService: to register the supply transaction.
+ * In case of a failure during the transaction registration, the stock update is rolled back
+ * to ensure data consistency.
+ * Custom exceptions are used to handle errors during the orchestration process.
+ *
+ */
 @Service
 public class SupplyTransactionOrchestrationAdapter implements SupplyTransactionOrchestrationFeignPort {
 
@@ -34,14 +45,14 @@ public class SupplyTransactionOrchestrationAdapter implements SupplyTransactionO
     }
 
     @Override
-    public void orchestrateSupplyTransaction(SupplyTransactionOrchestrator supplyTransactionOrchestrator) {
+    public void orchestrateSupplyTransaction(SupplyTransactionDetails supplyTransactionDetails) {
 
 
         SupplyTransactionRequestDto supplyTransactionRequestDto =
-                supplyTransactionRequestDtoMapper.toDto(supplyTransactionOrchestrator);
+                supplyTransactionRequestDtoMapper.toDto(supplyTransactionDetails);
 
         StockRequestDto stockRequestDto =
-                stockRequestDtoMapper.toDto(supplyTransactionOrchestrator);
+                stockRequestDtoMapper.toDto(supplyTransactionDetails);
 
         boolean stockUpdated = false;
 

@@ -1,5 +1,7 @@
-package com.resourceserver.emazonorchestratorservice.configuration.security;
+package com.resourceserver.emazonorchestratorservice.configuration.security.config;
 
+import com.resourceserver.emazonorchestratorservice.configuration.exceptionhandler.DelegateAccessDeniedHandler;
+import com.resourceserver.emazonorchestratorservice.configuration.exceptionhandler.DelegateAuthenticationEntryPoint;
 import com.resourceserver.emazonorchestratorservice.configuration.security.constants.ApiEndPointConstants;
 import com.resourceserver.emazonorchestratorservice.configuration.security.constants.RoleNameConstants;
 import com.resourceserver.emazonorchestratorservice.configuration.security.constants.SecurityConstants;
@@ -37,9 +39,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(HttpMethod.POST,
-                                "/api/orchestrator/supply")
+                                ApiEndPointConstants.API_ORCHESTRATOR_SUPPLY_URI)
                         .hasAuthority(RoleNameConstants.WAREHOUSE_ASSISTANT)
                         .anyRequest().authenticated()
                 )

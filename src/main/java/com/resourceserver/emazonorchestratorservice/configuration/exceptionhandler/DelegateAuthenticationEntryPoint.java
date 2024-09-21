@@ -1,4 +1,4 @@
-package com.resourceserver.emazonorchestratorservice.configuration.security;
+package com.resourceserver.emazonorchestratorservice.configuration.exceptionhandler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

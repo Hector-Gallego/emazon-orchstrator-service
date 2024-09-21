@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Getter
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ErrorResponse {
+public class CustomErrorResponse {
 
     private Integer status;
     private String message;
